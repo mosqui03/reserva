@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar Alojamiento</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/Huesped/hues.css">
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <div class="container mx-auto px-4 py-6">
+        <!-- Header -->
+        <header class="flex flex-col sm:flex-row justify-between items-center mb-8">
+            <h1 class="text-3xl font-bold text-gray-900 mb-4 sm:mb-0">Buscar Alojamiento</h1>
+            <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4">
+                <button id="myReservationsBtn" class="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg flex items-center">
+                    <i class="fas fa-calendar-check mr-2"></i>
+                    Mis Reservas
+                </button>
+            </div>
+        </header>
+
+        <!-- Filtros y búsqueda -->
+        <div class="bg-white rounded-xl shadow-md p-6 mb-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <!-- Ubicación -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Ubicación</label>
+                    <input
+                        type="text"
+                        id="locationFilter"
+                        placeholder="Ej: Miami, FL"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                </div>
+                
+                <!-- Tipo de propiedad -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Tipo</label>
+                    <select id="typeFilter" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="">Todos</option>
+                        <option value="Casa completa">Casa completa</option>
+                        <option value="Apartamento">Apartamento</option>
+                        <option value="Cabaña">Cabaña</option>
+                        <option value="Habitación privada">Habitación privada</option>
+                        <option value="Departamento">Departamento</option>
+                    </select>
+                </div>
+                
+                <!-- Precio máximo -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Precio máx. por noche ($)</label>
+                    <input
+                        type="number"
+                        id="priceFilter"
+                        min="0"
+                        placeholder="Ej: 200"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                </div>
+                
+                <!-- Fechas -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Fechas</label>
+                    <div class="flex space-x-2">
+                        <input type="date" id="checkIn" class="px-2 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                        <input type="date" id="checkOut" class="px-2 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                    </div>
+                </div>
+            </div>
+            <button id="applyFiltersBtn" class="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg">
+                <i class="fas fa-search mr-2"></i>
+                Buscar
+            </button>
+        </div>
+
+        <!-- Lista de propiedades -->
+        <div id="propertiesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            <!-- Las propiedades se cargarán dinámicamente aquí -->
+        </div>
+
+        <!-- Sección de Mis Reservas (oculta por defecto) -->
+        <div id="reservationsSection" class="hidden bg-white rounded-xl shadow-md p-6">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">Mis Reservas</h2>
+            <div id="reservationsList" class="space-y-4">
+                <!-- Las reservas se cargarán dinámicamente aquí -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para detalles y reserva -->
+    <div id="propertyModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 opacity-0 pointer-events-none modal">
+        <div class="bg-white rounded-xl shadow-lg w-full max-w-2xl max-h-[90vh] overflow-y-auto modal-content">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 id="modalTitle" class="text-xl font-semibold text-gray-800">Detalles de la Propiedad</h2>
+                    <button id="closeModalBtn" class="text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                
+                <div id="propertyDetails">
+                    <!-- Detalles dinámicos de la propiedad -->
+                </div>
+                
+                <form id="reservationForm" class="mt-6">
+                    <div class="space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <input type="date" id="modalCheckIn" name="checkIn" required class="px-4 py-2 border border-gray-300 rounded-md" />
+                            <input type="date" id="modalCheckOut" name="checkOut" required class="px-4 py-2 border border-gray-300 rounded-md" />
+                        </div>
+                        <input type="number" id="guests" name="guests" placeholder="Número de huéspedes" min="1" required class="w-full px-4 py-2 border border-gray-300 rounded-md" />
+                        <textarea id="specialRequests" name="specialRequests" placeholder="Solicitudes especiales (opcional)" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-md"></textarea>
+                    </div>
+                    
+                    <div class="flex justify-end space-x-3 mt-6">
+                        <button type="button" id="cancelReservationBtn" class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 hidden">
+                            Cancelar
+                        </button>
+                        <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
+                            <span id="submitBtnText">Reservar Ahora</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="hues.js"></script>
+</body>
+</html>

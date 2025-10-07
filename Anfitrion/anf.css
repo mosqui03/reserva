@@ -1,0 +1,53 @@
+body {
+  position: relative;
+  min-height: 100vh;
+  background: url('https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg') no-repeat center center fixed;
+  background-size: cover;
+  overflow-x: hidden;
+}
+
+.property-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.property-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+.modal {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.modal-content {
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+}
+.modal.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+.modal.open .modal-content {
+    transform: scale(1);
+}
+
+/* Estilos adicionales para mejorar la apariencia */
+.line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.property-image {
+    transition: transform 0.3s ease;
+}
+
+.property-card:hover .property-image {
+    transform: scale(1.05);
+}
+
+.btn-effect {
+    transition: all 0.2s ease;
+}
+
+.btn-effect:hover {
+    transform: translateY(-1px);
+}

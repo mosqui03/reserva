@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Propiedades</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="anf.css">
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <div class="container mx-auto px-4 py-6">
+        <!-- Header -->
+        <header class="flex flex-col sm:flex-row justify-between items-center mb-8">
+            <h1 class="text-3xl font-bold text-gray-900 mb-4 sm:mb-0">Mis Propiedades</h1>
+            <button id="addPropertyBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg flex items-center">
+                <i class="fas fa-plus mr-2"></i>
+                Agregar Propiedad
+            </button>
+        </header>
+
+        <!-- Lista de propiedades -->
+        <div id="propertiesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Las propiedades se cargarán dinámicamente aquí -->
+        </div>
+
+        <!-- Modal para agregar/editar -->
+        <div id="propertyModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 opacity-0 pointer-events-none modal">
+            <div class="bg-white rounded-xl shadow-lg w-full max-w-md modal-content">
+                <div class="p-6">
+                    <h2 id="modalTitle" class="text-xl font-semibold text-gray-800 mb-4">
+                        Agregar Nueva Propiedad
+                    </h2>
+                    
+                    <form id="propertyForm">
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Nombre de la propiedad</label>
+                                <input
+                                    type="text"
+                                    id="propertyName"
+                                    name="name"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    required
+                                />
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Tipo de propiedad</label>
+                                <select
+                                    id="propertyType"
+                                    name="type"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    required
+                                >
+                                    <option value="">Selecciona un tipo</option>
+                                    <option value="Casa completa">Casa completa</option>
+                                    <option value="Apartamento">Apartamento</option>
+                                    <option value="Cabaña">Cabaña</option>
+                                    <option value="Habitación privada">Habitación privada</option>
+                                    <option value="Departamento">Departamento</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Ubicación</label>
+                                <input
+                                    type="text"
+                                    id="propertyLocation"
+                                    name="location"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    required
+                                />
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Precio por noche ($)</label>
+                                <input
+                                    type="number"
+                                    id="propertyPrice"
+                                    name="price"
+                                    min="1"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    required
+                                />
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Descripción (opcional)</label>
+                                <textarea
+                                    id="propertyDescription"
+                                    name="description"
+                                    rows="3"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                ></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-end space-x-3 mt-6">
+                            <button
+                                type="button"
+                                id="cancelBtn"
+                                class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50"
+                            >
+                                Cancelar
+                            </button>
+                            
+                            <button
+                                type="submit"
+                                class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+                            >
+                                Agregar Propiedad
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="anf.js"></script>
+</body>
+</html>

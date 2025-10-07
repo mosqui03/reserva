@@ -1,0 +1,135 @@
+/* Mantener el header igual */
+header {
+   text-align: center;
+  margin-top: auto;
+  font-size: 80px;
+  font-style: italic;
+  color: #ffffff;
+  padding: 1rem;
+  font-size: 60px;
+  letter-spacing: 2px;
+  font-family: 'Birthstone', cursive; /* <-- Fuente personalizada */
+  letter-spacing: 20px;
+  transform: scaleY(1.4);
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;}
+
+/* Opciones de rol */
+.roles {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-top: 20px;
+  align-items: center;
+}
+
+.role-option {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.role-option button {
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
+  font-size: 1rem;
+  background: #3b82f6;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+  width: 220px;
+}
+
+.role-option button:hover {
+  background: #3b82f6;
+}
+
+.role-icon {
+  margin-top: 10px;
+  font-size: 2rem;
+  color: #3b82f6; /* marrón oscuro */
+}
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: url('https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+/* Contenedor principal */
+main {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+/* Caja de formularios */
+.form-container {
+  background: rgba(255, 255, 255, 0.514); /* beige con transparencia */
+  padding: 45px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 8px rgba(0,0,0,0.4);
+  width: 320px;
+  margin-top: 0px;
+}
+
+/* Formularios */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-top: 10px;
+  color: #3b82f6; /* marrón oscuro */
+  font-weight: bold;
+}
+
+input {
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #3b82f6;
+  border-radius: 4px;
+}
+
+/* Botones */
+button {
+  margin-top: 15px;
+  padding: 10px;
+  background: #3b82f6; /* café */
+  color: #ffffff; /* beige */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}s
+
+button:hover {
+  background: #3b82f6; /* café más oscuro */
+}
+
+.hidden {
+  display: none;
+}
+
+/* Links */
+a {
+  color: #ffffff;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
